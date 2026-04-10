@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Backgrounds */
+  --bg-base: #f4f7fb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #0f172a;
+  --bg-navbar: #0f172a;
+
+  /* Text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-sidebar: #cbd5f5;
+
+  /* Accent */
+  --accent-primary: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-light: #dbeafe;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --border-dark: #1e293b;
+
+  /* Status */
+  --status-active: #22c55e;
+  --status-low: #f59e0b;
+  --status-out: #ef4444;
+  --status-pending: #64748b;
+  --status-received: #22c55e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, .mono {
+  font-family: 'DM Mono', monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: #cbd5f5; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Sidebar */
+.sidebar-link {
+  @apply flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all duration-150 cursor-pointer;
+  color: var(--text-sidebar);
+}
+.sidebar-link:hover {
+  background: rgba(37, 99, 235, 0.15);
+  color: #ffffff;
+}
+.sidebar-link.active {
+  background: var(--accent-primary);
+  color: #ffffff;
+}
+.sidebar-link svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+}
+
+/* Status badges */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+}
+.badge-active { background: #dcfce7; color: #166534; }
+.badge-inactive { background: #f1f5f9; color: #64748b; }
+.badge-low { background: #fef3c7; color: #92400e; }
+.badge-out { background: #fee2e2; color: #991b1b; }
+.badge-pending { background: #e2e8f0; color: #334155; }
+.badge-received { background: #dcfce7; color: #166534; }
+.badge-paid { background: #dcfce7; color: #166534; }
+.badge-refunded { background: #fee2e2; color: #991b1b; }
+
+/* Cards */
+.stat-card {
+  @apply rounded-xl p-5 border transition-all duration-200;
+  border-color: var(--border);
+  background: var(--bg-card);
+}
+.stat-card:hover {
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Table */
+.data-table {
+  @apply w-full text-sm;
+}
+.data-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+.data-table thead th {
+  @apply text-left py-3 px-4 text-xs font-medium uppercase tracking-wide;
+  color: var(--text-muted);
+}
+.data-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.data-table tbody tr:hover {
+  background: var(--accent-light);
+}
+.data-table tbody td {
+  @apply py-3.5 px-4;
+  color: var(--text-primary);
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply h-1 rounded-full bg-gray-200 overflow-hidden;
+}
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all;
+  background: var(--accent-primary);
+}
+
+/* Buttons */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-150;
+  background: var(--accent-primary);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-150;
+  border-color: var(--border);
+  background: white;
+  color: var(--text-primary);
+}
+.btn-secondary:hover {
+  background: var(--accent-light);
+  color: var(--accent-primary);
+}
+
+.btn-outline {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium border transition-all duration-150;
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+.btn-outline:hover {
+  background: var(--accent-light);
+  color: var(--accent-primary);
+}
+
+/* Button press effect */
+button {
+  transition: all 0.15s ease;
+}
+button:active {
+  transform: scale(0.97);
+}
+
+/* Input */
+.input-field {
+  @apply w-full px-3 py-2 rounded-lg text-sm border outline-none transition-all;
+  border-color: var(--border);
+  background: #f8fafc;
+}
+.input-field:focus {
+  border-color: var(--accent-primary);
+  background: white;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+/* Section label */
+.section-label {
+  @apply text-xs font-semibold uppercase tracking-widest mb-2 px-3;
+  color: var(--text-secondary);
+}
+
+/* AI Badge */
+.ai-badge {
+  @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+  background: #eff6ff;
+  color: var(--accent-primary);
+  border: 1px solid #bfdbfe;
+}
+
+/* Animations */
+@keyframes growUp {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.chart-bar {
+  transform-origin: bottom;
+  animation: growUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Toggle */
+.toggle {
+  @apply relative inline-block w-10 h-6 rounded-full cursor-pointer;
+}
+.toggle-thumb {
+  @apply absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform;
+}
+.toggle.on {
+  background: var(--accent-primary);
+}
+.toggle.off {
+  background: #cbd5f5;
+}
+.toggle.on .toggle-thumb {
+  transform: translateX(16px);
+}
+
+/* Cashier additions */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.status-dot {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.btn-transition {
+  transition: all 0.15s ease;
+}
